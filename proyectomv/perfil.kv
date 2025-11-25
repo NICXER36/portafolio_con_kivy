@@ -1,0 +1,249 @@
+<PerfilScreen>:
+    name: 'perfil'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        # Top bar
+        MDTopAppBar:
+            title: "Mi Perfil"
+            elevation: 2
+            left_action_items: [["arrow-left", lambda x: root.ir_a_otra()]]
+            md_bg_color: app.theme_cls.primary_color
+        
+        # ScrollView para contenido
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(12)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Información Personal
+                MDLabel:
+                    text: 'Información Personal'
+                    theme_text_color: 'Primary'
+                    font_style: 'H6'
+                    size_hint_y: None
+                    height: dp(35)
+                
+                # Imagen de perfil
+                AnchorLayout:
+                    size_hint_y: None
+                    height: dp(170)
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    
+                    MDCard:
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+                        elevation: 2
+                        radius: [dp(75)]
+                        md_bg_color: [0.9, 0.9, 0.9, 1]
+                        on_touch_down: root.seleccionar_imagen() if self.collide_point(*args[1].pos) else False
+                        
+                        Image:
+                            id: img_perfil
+                            source: 'kivy_mov/share/proyectomv/img/usuario.png'
+                            size_hint: None, None
+                            size: dp(150), dp(150)
+                            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                
+                MDLabel:
+                    text: 'Toca la imagen para cambiarla'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: dp(20)
+                    halign: 'center'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+                
+                # Nombre
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(48)
+                    spacing: dp(10)
+                    
+                    MDLabel:
+                        text: 'Nombre:'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Body2'
+                        size_hint_x: 0.3
+                    
+                    MDTextField:
+                        id: txt_nombre
+                        disabled: False
+                        mode: 'rectangle'
+                        font_size: dp(14)
+                
+                # Apellido
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(48)
+                    spacing: dp(10)
+                    
+                    MDLabel:
+                        text: 'Apellido:'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Body2'
+                        size_hint_x: 0.3
+                    
+                    MDTextField:
+                        id: txt_apellido
+                        disabled: False
+                        mode: 'rectangle'
+                        font_size: dp(14)
+                
+                # Sobre mí
+                MDLabel:
+                    text: 'Sobre mí:'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    id: txt_descripcion
+                    disabled: False
+                    mode: 'rectangle'
+                    multiline: True
+                    size_hint_y: None
+                    height: dp(120)
+                    font_size: dp(14)
+                
+                # Contactos
+                MDLabel:
+                    text: 'Contactos'
+                    theme_text_color: 'Primary'
+                    font_style: 'H6'
+                    size_hint_y: None
+                    height: dp(35)
+                
+                # Header contactos
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(32)
+                    padding: dp(5), 0
+                    md_bg_color: [0.85, 0.9, 0.95, 1]
+                    
+                    MDLabel:
+                        text: 'Tipo'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Caption'
+                        size_hint_x: 0.45
+                        halign: 'center'
+                    
+                    MDLabel:
+                        text: 'Información'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Caption'
+                        size_hint_x: 0.55
+                        halign: 'center'
+                
+                # Lista contactos
+                ScrollView:
+                    size_hint: 1, None
+                    height: dp(140)
+                    do_scroll_x: False
+                    
+                    MDGridLayout:
+                        id: panel_contactos_container
+                        cols: 1
+                        spacing: dp(6)
+                        size_hint_y: None
+                        height: self.minimum_height
+                        adaptive_height: True
+                
+                # Botón agregar contacto
+                MDRaisedButton:
+                    text: '+ Agregar Contacto'
+                    size_hint_y: None
+                    height: dp(40)
+                    font_size: dp(13)
+                    md_bg_color: app.theme_cls.primary_color
+                    on_press: root.nuevo_contacto()
+                
+                # Redes Sociales
+                MDLabel:
+                    text: 'Redes Sociales'
+                    theme_text_color: 'Primary'
+                    font_style: 'H6'
+                    size_hint_y: None
+                    height: dp(35)
+                
+                # Header redes
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(32)
+                    padding: dp(5), 0
+                    md_bg_color: [0.85, 0.9, 0.95, 1]
+                    
+                    MDLabel:
+                        text: 'Plataforma'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Caption'
+                        size_hint_x: 0.45
+                        halign: 'center'
+                    
+                    MDLabel:
+                        text: 'Enlace'
+                        theme_text_color: 'Secondary'
+                        font_style: 'Caption'
+                        size_hint_x: 0.55
+                        halign: 'center'
+                
+                # Lista redes
+                ScrollView:
+                    size_hint: 1, None
+                    height: dp(140)
+                    do_scroll_x: False
+                    
+                    MDGridLayout:
+                        id: panel_redes_container
+                        cols: 1
+                        spacing: dp(6)
+                        size_hint_y: None
+                        height: self.minimum_height
+                        adaptive_height: True
+                
+                # Botón agregar red
+                MDRaisedButton:
+                    text: '+ Agregar Red Social'
+                    size_hint_y: None
+                    height: dp(40)
+                    font_size: dp(13)
+                    md_bg_color: app.theme_cls.primary_color
+                    on_press: root.nueva_red()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(15)
+                
+                    # Botón guardar
+                    MDRaisedButton:
+                        id: btn_guardar
+                        text: 'Guardar Cambios'
+                        size_hint_y: None
+                        height: dp(50)
+                        md_bg_color: [0.2, 0.7, 0.4, 1]
+                        font_size: dp(15)
+                        disabled: True
+                        on_press: root.guardar_cambios()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(15)
+

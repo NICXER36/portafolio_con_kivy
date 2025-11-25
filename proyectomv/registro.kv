@@ -1,0 +1,136 @@
+<Registro_Screen>:
+    name: 'registro'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        # Logo
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(100)
+            padding: dp(10)
+            
+            Image:
+                source: 'kivy_mov/share/proyectomv/img/sinfondo.png'
+                size_hint: None, None
+                size: dp(90), dp(90)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                allow_stretch: True
+        
+        # ScrollView para formulario
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(25), dp(20)
+                spacing: dp(12)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Título
+                MDLabel:
+                    text: 'Crear Cuenta'
+                    theme_text_color: 'Primary'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: dp(45)
+                    halign: 'center'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+                
+                # Email
+                MDLabel:
+                    text: 'Correo electrónico'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                
+                MDTextField:
+                    id: email_input
+                    hint_text: 'ejemplo@correo.com'
+                    mode: 'rectangle'
+                    size_hint_y: None
+                    height: dp(48)
+                    font_size: dp(14)
+                    on_text: root.validar_email()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+                
+                # Contraseña
+                MDLabel:
+                    text: 'Contraseña'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                
+                MDTextField:
+                    id: password_input
+                    hint_text: 'Mínimo 6 caracteres'
+                    mode: 'rectangle'
+                    password: True
+                    size_hint_y: None
+                    height: dp(48)
+                    font_size: dp(14)
+                    on_text: root.validar_passwords()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+                
+                # Confirmar contraseña
+                MDLabel:
+                    text: 'Confirmar contraseña'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                
+                MDTextField:
+                    id: confirm_input
+                    hint_text: 'Repite tu contraseña'
+                    mode: 'rectangle'
+                    password: True
+                    size_hint_y: None
+                    height: dp(48)
+                    font_size: dp(14)
+                    on_text: root.validar_passwords()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                # Botón registrar
+                MDRaisedButton:
+                    id: registrar_btn
+                    text: 'Registrarse'
+                    size_hint_y: None
+                    height: dp(52)
+                    font_size: dp(17)
+                    md_bg_color: app.theme_cls.primary_color
+                    on_press: root.registrar_usuario_handler()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(15)
+                
+                # Botón cancelar
+                MDFlatButton:
+                    text: 'Cancelar'
+                    size_hint_y: None
+                    height: dp(46)
+                    font_size: dp(14)
+                    theme_text_color: 'Primary'
+                    on_press: root.volver_login()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+

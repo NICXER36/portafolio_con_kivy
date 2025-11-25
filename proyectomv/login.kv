@@ -1,0 +1,129 @@
+<LoginScreen>:
+    name: 'login'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        # Logo
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(120)
+            padding: dp(10)
+            
+            Image:
+                source: 'kivy_mov/share/proyectomv/img/sinfondo.png'
+                size_hint: None, None
+                size: dp(100), dp(100)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                allow_stretch: True
+        
+        # ScrollView para formulario
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(25), dp(20)
+                spacing: dp(12)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Título
+                MDLabel:
+                    text: 'Iniciar Sesión'
+                    theme_text_color: 'Primary'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: dp(45)
+                    halign: 'center'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+                
+                # Email
+                MDLabel:
+                    text: 'Correo electrónico'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                
+                MDTextField:
+                    id: email_input
+                    hint_text: 'ejemplo@correo.com'
+                    mode: 'rectangle'
+                    size_hint_y: None
+                    height: dp(48)
+                    font_size: dp(14)
+                    on_text: root.validar_campos()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+                
+                # Contraseña
+                MDLabel:
+                    text: 'Contraseña'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                
+                MDTextField:
+                    id: password_input
+                    hint_text: 'Ingresa tu contraseña'
+                    mode: 'rectangle'
+                    password: True
+                    size_hint_y: None
+                    height: dp(48)
+                    font_size: dp(14)
+                    on_text: root.validar_campos()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                # Botón ingresar
+                MDRaisedButton:
+                    id: ingresar_btn
+                    text: 'Ingresar'
+                    size_hint_y: None
+                    height: dp(52)
+                    font_size: dp(17)
+                    disabled: True
+                    on_press: root.verificar_credenciales_handler()
+                    md_bg_color: app.theme_cls.primary_color
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(15)
+                
+                # Enlaces
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(65)
+                    spacing: dp(6)
+                    
+                    MDLabel:
+                        text: '¿Olvidaste tu contraseña?'
+                        theme_text_color: 'Hint'
+                        font_style: 'Caption'
+                        size_hint_y: None
+                        height: dp(20)
+                        halign: 'center'
+                    
+                    MDTextButton:
+                        text: 'Crear cuenta nueva'
+                        theme_text_color: 'Primary'
+                        font_style: 'Body2'
+                        size_hint_y: None
+                        height: dp(38)
+                        on_press: root.ir_registro()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+

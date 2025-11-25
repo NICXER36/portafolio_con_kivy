@@ -1,0 +1,103 @@
+# FilaEditable ahora se crea manualmente en Python para evitar conflictos con Builder
+
+<ListaEditable>:
+    orientation: 'vertical'
+    spacing: dp(8)
+    size_hint_y: None
+    height: self.minimum_height
+    
+    MDLabel:
+        text: root.titulo
+        theme_text_color: 'Primary'
+        font_style: 'H6'
+        size_hint_y: None
+        height: dp(32)
+    
+    ScrollView:
+        size_hint_y: None
+        height: dp(180)
+        do_scroll_x: False
+        
+        MDGridLayout:
+            id: items_layout
+            cols: 1
+            spacing: dp(6)
+            size_hint_y: None
+            height: self.minimum_height
+            adaptive_height: True
+    
+    MDBoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: dp(48)
+        spacing: dp(8)
+        
+        MDRaisedButton:
+            id: btn_agregar
+            text: 'Agregar'
+            size_hint_x: 0.5
+            md_bg_color: app.theme_cls.primary_color
+            font_size: dp(13)
+            on_press: root.agregar()
+        
+        MDRaisedButton:
+            id: btn_guardar
+            text: 'Guardar'
+            size_hint_x: 0.5
+            md_bg_color: [0.2, 0.7, 0.4, 1]
+            font_size: dp(13)
+            on_press: root.guardar()
+
+<ExperienciaScreen>:
+    name: 'experiencia'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        # Top bar
+        MDTopAppBar:
+            title: "Experiencia Laboral"
+            elevation: 2
+            left_action_items: [["arrow-left", lambda x: root.ir_dashboard()]]
+            md_bg_color: app.theme_cls.primary_color
+        
+        # ScrollView
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(18), dp(15)
+                spacing: dp(14)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                ListaEditable:
+                    id: lista_experiencia
+                    titulo: "Experiencia Laboral"
+                    tipo: "experiencia"
+                
+                ListaEditable:
+                    id: lista_recomendacion
+                    titulo: "Recomendaciones"
+                    tipo: "recomendacion"
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+                
+                # Botón guardar todo
+                MDRaisedButton:
+                    id: btn_guardar_todo
+                    text: 'Guardar Cambios'
+                    size_hint_y: None
+                    height: dp(50)
+                    md_bg_color: [0.2, 0.7, 0.4, 1]
+                    font_size: dp(15)
+                    on_press: root.guardar_todo()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+

@@ -1,0 +1,109 @@
+<ListaConEliminar>:
+    orientation: 'vertical'
+    spacing: dp(8)
+    size_hint_y: None
+    height: self.minimum_height
+    
+    MDLabel:
+        text: root.titulo
+        theme_text_color: 'Primary'
+        font_style: 'H6'
+        size_hint_y: None
+        height: dp(32)
+    
+    MDBoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: dp(48)
+        spacing: dp(8)
+        
+        MDTextField:
+            id: input_field
+            hint_text: root.hint_text
+            mode: 'rectangle'
+            font_size: dp(13)
+            size_hint_x: 1
+        
+        MDRaisedButton:
+            id: btn_agregar
+            text: 'Agregar'
+            size_hint_x: None
+            width: dp(110)
+            md_bg_color: app.theme_cls.primary_color
+            font_size: dp(13)
+            on_press: root.agregar()
+    
+    ScrollView:
+        size_hint_y: None
+        height: dp(150)
+        do_scroll_x: False
+        
+        MDGridLayout:
+            id: items_layout
+            cols: 1
+            spacing: dp(6)
+            size_hint_y: None
+            height: self.minimum_height
+            adaptive_height: True
+
+<HabilidadesScreen>:
+    name: 'habilidades'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        # Top bar
+        MDTopAppBar:
+            title: "Habilidades y Herramientas"
+            elevation: 2
+            left_action_items: [["arrow-left", lambda x: root.ir_dashboard()]]
+            md_bg_color: app.theme_cls.primary_color
+        
+        # ScrollView
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(18), dp(15)
+                spacing: dp(14)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                ListaConEliminar:
+                    id: lista1
+                    titulo: 'Habilidades Técnicas'
+                    hint_text: 'Ej: Python, SQL'
+                    categoria: 'tecnica'
+                
+                ListaConEliminar:
+                    id: lista2
+                    titulo: 'Habilidades Blandas'
+                    hint_text: 'Ej: Comunicación, Liderazgo'
+                    categoria: 'blanda'
+                
+                ListaConEliminar:
+                    id: lista3
+                    titulo: 'Herramientas'
+                    hint_text: 'Ej: Git, Figma'
+                    categoria: 'herramienta'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+                
+                # Botón guardar todo
+                MDRaisedButton:
+                    id: btn_guardar_todo
+                    text: 'Guardar Cambios'
+                    size_hint_y: None
+                    height: dp(50)
+                    md_bg_color: [0.2, 0.7, 0.4, 1]
+                    font_size: dp(15)
+                    on_press: root.guardar_todo()
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+

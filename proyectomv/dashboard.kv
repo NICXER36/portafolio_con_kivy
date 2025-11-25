@@ -1,0 +1,101 @@
+<RecuadroImagen>:
+    orientation: 'vertical'
+    padding: dp(12)
+    spacing: dp(8)
+    size_hint: 1, None
+    height: dp(140)
+    radius: [dp(10), dp(10), dp(10), dp(10)]
+    
+    MDBoxLayout:
+        size_hint: 1, 0.7
+        padding: dp(8)
+        
+        Image:
+            source: root.imagen
+            size_hint: None, None
+            size: dp(60), dp(60)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            allow_stretch: True
+    
+    MDLabel:
+        text: root.texto
+        theme_text_color: 'Custom'
+        text_color: 1, 1, 1, 1
+        font_style: 'Body1'
+        size_hint: 1, 0.3
+        halign: 'center'
+        valign: 'middle'
+        bold: True
+
+<MenuScreen>:
+    name: 'dashboard'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_light
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(18), dp(20)
+                spacing: dp(12)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Título
+                MDLabel:
+                    text: 'Mi Portafolio'
+                    theme_text_color: 'Primary'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: dp(50)
+                    halign: 'center'
+                
+                # Subtítulo
+                MDLabel:
+                    text: 'Gestiona tu información profesional'
+                    theme_text_color: 'Secondary'
+                    font_style: 'Body2'
+                    size_hint_y: None
+                    height: dp(22)
+                    halign: 'center'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(15)
+                
+                # Grid de tarjetas
+                MDGridLayout:
+                    cols: 2
+                    spacing: dp(12)
+                    padding: dp(3)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    adaptive_height: True
+                    
+                    RecuadroImagen:
+                        texto: 'Perfil'
+                        imagen: 'kivy_mov/share/proyectomv/img/usuario.png'
+                        destino: 'perfil'
+                    
+                    RecuadroImagen:
+                        texto: 'Formación y Educación'
+                        imagen: 'kivy_mov/share/proyectomv/img/estudios.png'
+                        destino: 'formacion'
+                    
+                    RecuadroImagen:
+                        texto: 'Experiencia Laboral'
+                        imagen: 'kivy_mov/share/proyectomv/img/maletin.png'
+                        destino: 'experiencia'
+                    
+                    RecuadroImagen:
+                        texto: 'Herramientas'
+                        imagen: 'kivy_mov/share/proyectomv/img/habilidades.png'
+                        destino: 'habilidades'
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+
